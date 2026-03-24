@@ -20,6 +20,9 @@ var CUP3LIFTEDx = 3000
 var CUP3BASEx = 350
 var CUP3SELECTx = 3000
 
+
+
+
 var Coin = loadImage("images/coin.png")
 var Coinx=3000
 setup = function() {
@@ -32,18 +35,21 @@ setup = function() {
 draw = function(){   
    background(150,150,150)
 
-
+var mousePosition3 = get(mouseX, mouseY);
+var PLAYcolor = color(0,170,0);
+var PLAYcolor1= color(0,2,0);
 
 fill(20,20,20,0)
 stroke(2)
-rect(150,60,300,50)
+rect(150,60,300,50,10)
 fill(0,0,0)
 textSize(15)
 text("CHOOSE THE CUP WITH THE COIN",170,90)
 
 
 //Coin
-image(Coin,80,197,140,230)
+image(Coin,Coinx,197,140,230)
+
 
 //cup1
 image(CUP1,CUP1BASEx,180,200,300);
@@ -73,7 +79,20 @@ for(var i = 0; i < 450; i += 70){
 
   };
 
+//play
+fill(0,170,0)
+rect(200,130,200,50,10);
+fill(0,2,0);
+textSize(25)
+text("CLICK TO PLAY",207,165);
+
+if(mousePosition3==PLAYcolor||mousePosition3==PLAYcolor1){
+
+fill(0,0,0);
+rect(100,130,200,50,10);
+};
 //COIN
+
 
 
 
