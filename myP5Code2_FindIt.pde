@@ -19,12 +19,13 @@ var CUP3LIFTED = loadImage("images/cupppylifted.png")
 var CUP3LIFTEDx = 3000
 var CUP3BASEx = 350
 var CUP3SELECTx = 3000
-
+var Loss = 0
 
 
 
 var Coin = loadImage("images/coin.png")
 var Coinx=3000
+var coinCounter=0
 setup = function() {
    size(600, 450); 
 };
@@ -33,11 +34,12 @@ setup = function() {
 
 
 draw = function(){   
-   background(150,150,150)
+
 
 var mousePosition3 = get(mouseX, mouseY);
-var PLAYcolor = color(0,170,0);
-var PLAYcolor1= color(0,2,0);
+var PLAYcolor = color(0,200,0)
+var PLAYcolor1 = color(0,1,0)
+background(150,150,150)
 
 fill(20,20,20,0)
 stroke(2)
@@ -78,24 +80,90 @@ for(var i = 0; i < 450; i += 70){
     text("$", i+100, 430);
 
   };
-
 //play
-fill(0,170,0)
+fill(0,200,0)
 rect(200,130,200,50,10);
-fill(0,2,0);
+fill(0,1,0)
 textSize(25)
 text("CLICK TO PLAY",207,165);
 
 if(mousePosition3==PLAYcolor||mousePosition3==PLAYcolor1){
-
-fill(0,0,0);
-rect(100,130,200,50,10);
+fill(0,0,0,0)
+strokeWeight(5)
+stroke(255,255,255)
+rect(200,130,200,50,10)
+strokeWeight(1)
 };
+
 //COIN
+if(mousePosition3==PLAYcolor && mousePressed||mousePosition3==PLAYcolor1 && mousePressed){
+coinCounter= round(random(6))
+fill(0,0,0)
+text("SHUFFLING THAT COIN...",140,20)
+};
+
+if(coinCounter == 0){
+Coinx=3000
+}
+if(coinCounter == 1){
+Coinx=90
+}
+if(coinCounter == 2){
+Coinx=230
+}
+if(coinCounter == 3){
+Coinx=380
+}
 
 
+//LOOSER
+if (dist(mouseX, mouseY, 145, 320)< 70 && mousePressed && coinCounter !== 1){
+Loss=1
+}
+if (dist(mouseX, mouseY, 295, 320)< 60 && mousePressed && coinCounter !== 2){
+Loss=1
+}
+if (dist(mouseX, mouseY, 445, 320)< 60 && mousePressed && coinCounter !== 3){
+Loss=1
+}
+if(Loss==1){
+    fill(0,0,0)
+rect(0,0,1000,1000)
+fill(255,255,255)
+textSize(40)
+text("WRONG CHOICE.",200,100)
+textSize(20)
+text("TRY AGAIN. (RELOAD PAGE)",100,300)
+}
 
 
+//win cons
+if (dist(mouseX, mouseY, 145, 320)< 70 && mousePressed && coinCounter == 1){
+
+fill(250, 225, 5)  
+rect(200,130,200,50,10);
+fill(0,0,0)
+textSize(25)
+text("YOU'VE WON!!!!",207,165);
+};
+
+
+if (dist(mouseX, mouseY, 295, 320)< 60 && mousePressed && mousePressed && coinCounter == 2){
+
+fill(250, 225, 5)  
+rect(200,130,200,50,10);
+fill(0,0,0)
+textSize(25)
+text("YOU'VE WON!!!!",207,165);
+};
+if (dist(mouseX, mouseY, 445, 320)< 60 && mousePressed && mousePressed && coinCounter == 3){
+
+fill(250, 225, 5)  
+rect(200,130,200,50,10);
+fill(0,0,0)
+textSize(25)
+text("YOU'VE WON!!!!",207,165);
+};
 
 
  //cup 1
